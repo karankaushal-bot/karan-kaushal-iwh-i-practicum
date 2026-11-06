@@ -29,7 +29,7 @@ app.get('/', async (req, res) => {
 
 // Form page
 app.get('/update-cobj', (req, res) => {
-  res.render('updates', { title: 'Update Custom Object Form | Integrating With HubSpot I Practicum' });
+  res.render('updatePets', { title: 'Update Custom Object Form | Integrating With HubSpot I Practicum' });
 });
 
 // Create a new pet from the form, then go home
