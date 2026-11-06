@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    title= title
+    link(rel="stylesheet" href="/css/style.css")
+  body
+    h1 Add a Pet
+    form(action="/update-cobj" method="POST")
+      label(for="name") Name
+      input(type="text" name="name" id="name" required)
+      label(for="species") Species
+      input(type="text" name="species" id="species")
+      label(for="bio") Bio
+      textarea(name="bio" id="bio")
+      button(type="submit") Submit
+    a(href="/") Return to the homepage
