@@ -8,7 +8,7 @@ app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const PRIVATE_APP_ACCESS = process.env.PRIVATE_APP_ACCESS;
+const PRIVATE_APP_ACCESS = process.env.PRIVATE_APP_ACCESS||"";
 const OBJECT_TYPE = '2-72310222';
 const headers = {
   Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
@@ -17,7 +17,7 @@ const headers = {
 
 // Homepage: table of all pets
 app.get('/', async (req, res) => {
-  const url = `https://api.hubapi.com/crm/v3/objects/${OBJECT_TYPE}?properties=name,species,breed`;
+  const url = `https://api.hubapi.com/crm/v3/objects/${OBJECT_TYPE}?properties=name,species,bio`;
   try {
     const resp = await axios.get(url, { headers });
     res.render('homepage', { title: 'Pets | Integrating With HubSpot I Practicum', data: resp.data.results });
@@ -38,7 +38,7 @@ app.post('/update-cobj', async (req, res) => {
     properties: {
       name: req.body.name,
       species: req.body.species,
-      breed: req.body.breed
+      breed: req.body.bio
     }
   };
   try {
